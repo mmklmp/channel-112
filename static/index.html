@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Design BodyGraph</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <h1>Discover Your Design</h1>
+            <p>Enter your birth details to generate your BodyGraph.</p>
+        </header>
+
+        <main>
+            <form id="birthForm" class="glass-panel">
+                <div class="form-group">
+                    <label for="date">Birth Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Birth Time</label>
+                    <input type="time" id="time" name="time" required>
+                </div>
+                <div class="form-group">
+                    <label for="timezone">Timezone (e.g. -05:00 for EST)</label>
+                    <input type="text" id="timezone" name="timezone" placeholder="±HH:MM or Z" value="-05:00" required>
+                </div>
+                <button type="submit" class="btn-primary" id="submitBtn">
+                    <span class="btn-text">Generate Chart</span>
+                    <div class="loader hidden"></div>
+                </button>
+            </form>
+
+            <div id="errorContainer" class="error-message hidden"></div>
+
+            <div id="resultsContainer" class="results-container hidden">
+                <div class="results-header glass-panel">
+                    <h2>Your Human Design</h2>
+                    <h3 id="typeProfile"></h3>
+                    <p id="crossDetails" class="subtitle"></p>
+                </div>
+
+                <div class="grid-layout">
+                    <div class="card glass-panel">
+                        <h4>Key Attributes</h4>
+                        <ul class="attribute-list">
+                            <li><strong>Authority:</strong> <span id="authVal"></span></li>
+                            <li><strong>Strategy:</strong> <span id="stratVal"></span></li>
+                            <li><strong>Signature:</strong> <span id="sigVal"></span></li>
+                            <li><strong>Not-Self Theme:</strong> <span id="notSelfVal"></span></li>
+                            <li><strong>Definition:</strong> <span id="defVal"></span></li>
+                        </ul>
+                    </div>
+
+                    <div class="card glass-panel">
+                        <h4>Defined Centers</h4>
+                        <div id="centersList" class="pill-container"></div>
+                    </div>
+
+                    <div class="card glass-panel full-width">
+                        <h4>Channels & Variables</h4>
+                        <div class="two-col">
+                            <div>
+                                <h5>Channels</h5>
+                                <ul id="channelsList" class="simple-list"></ul>
+                            </div>
+                            <div>
+                                <h5>Variables</h5>
+                                <ul id="variablesList" class="simple-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
