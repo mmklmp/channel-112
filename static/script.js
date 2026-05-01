@@ -3,7 +3,7 @@ document.getElementById('birthForm').addEventListener('submit', async (e) => {
 
     const date = document.getElementById('date').value;
     const time = document.getElementById('time').value;
-    const timezone = document.getElementById('timezone').value;
+    const zipcode = document.getElementById('zipcode').value;
 
     const submitBtn = document.getElementById('submitBtn');
     const btnText = submitBtn.querySelector('.btn-text');
@@ -24,7 +24,7 @@ document.getElementById('birthForm').addEventListener('submit', async (e) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ date, time, timezone })
+            body: JSON.stringify({ date, time, zip_code: zipcode })
         });
 
         if (!response.ok) {
@@ -56,11 +56,11 @@ document.getElementById('birthForm').addEventListener('submit', async (e) => {
 
 function renderChart(data) {
     // Basic Info
-    document.getElementById('typeProfile').textContent = `${data.profile} ${data.authority} ${data.type}`;
+    document.getElementById('typeProfile').textContent = `${data.profile} ${data.type}`;
     
     // Cross
     if (data.cross) {
-        document.getElementById('crossDetails').textContent = `${data.cross.name} (${data.geometry})`;
+        document.getElementById('crossDetails').textContent = `${data.cross.name} (${data.cross.geometry})`;
     } else {
         document.getElementById('crossDetails').textContent = '';
     }
@@ -70,12 +70,7 @@ function renderChart(data) {
     document.getElementById('stratVal').textContent = data.strategy;
     document.getElementById('sigVal').textContent = data.signature;
     document.getElementById('notSelfVal').textContent = data.not_self_theme;
-    
-    if (data.definitions && data.definitions.length > 0) {
-        document.getElementById('defVal').textContent = data.definitions[0].type;
-    } else {
-        document.getElementById('defVal').textContent = "None";
-    }
+    document.getElementById('defVal').textContent = data.definitions;
 
     // Centers
     const centersList = document.getElementById('centersList');
@@ -84,7 +79,7 @@ function renderChart(data) {
         data.centers.forEach(center => {
             const pill = document.createElement('div');
             pill.className = 'pill';
-            pill.textContent = center.name;
+            pill.textContent = center;
             centersList.appendChild(pill);
         });
     } else {

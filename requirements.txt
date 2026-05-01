@@ -1,4 +1,7 @@
 fastapi
 uvicorn
 pyswisseph
+geopy
+timezonefinder
+tzdata
 https://github.com/ppo/pyhd/archive/refs/heads/master.zip
