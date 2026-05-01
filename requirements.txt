@@ -1,0 +1,4 @@
+fastapi
+uvicorn
+pyswisseph
+https://github.com/ppo/pyhd/archive/refs/heads/master.zip
